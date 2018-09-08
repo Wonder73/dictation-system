@@ -1,0 +1,17 @@
+.write {
+  margin: 20px auto;
+  width: 500px;
+  .ant-row-flex{
+    margin:5px 0;
+    h1{
+      font-size: 2rem;
+    }
+    p{
+      margin: 0;
+      font-size: 1.4rem;
+    }
+  }
+  .write__button {
+    margin:15px 0;
+  }
+}

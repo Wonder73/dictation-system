@@ -1,0 +1,31 @@
+.index {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%; left:50%;
+  width: 400.5px;
+  transform: translate(-50%, -80%);
+  h1 {
+    font-size: 5rem;
+  }
+  .index__button {
+    margin: 5px 0;
+    width: 100%;
+  }
+
+  @media only screen {
+    @media (max-width: 410px){
+      width: 95%;
+      h1 {
+        font-size: 4rem;
+      }
+    }
+    @media (max-width: 340px){
+      h1{
+        font-size: 3rem;
+      }
+    }
+  }
+}

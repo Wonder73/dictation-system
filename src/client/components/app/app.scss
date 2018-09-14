@@ -1,9 +1,24 @@
 .app {
-  padding: 10px 0 0 0;
-  .active {
-    padding: 100px 0 0 10px;
-    font-size: 14px;
-    color: #333;
+  header{
+    display:flex;
+    justify-content: space-between;
+    .active {
+      padding: 0 0 0 10px;
+      font-size: 1.4rem;
+      color: #333;
+    }
+    .user-info {
+      padding: 0 10px 0 0;
+      font-size: 1.4rem;
+      color: #333;
+      &>span {
+        &:last-child {
+          margin-left: 5px;
+          font-size: 1.2rem;
+          cursor: pointer;
+        }
+      }
+    }
   }
 }
 

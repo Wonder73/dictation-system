@@ -1,0 +1,34 @@
+.login {
+  position: fixed;
+  top: 50%; left: 50%;
+  width: 400px;
+  transform: translate(-50%, -120%);
+  h1 {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+  .login__button {
+    display: block;
+    margin: 10px auto;
+    width: 100px;
+  }
+  .login__Input--close {
+    font-size: 1.2rem;
+    color: rgba(0, 0, 0, .2);
+    cursor: pointer;
+    transition: color .3s;
+    &:hover {
+      color: #999;
+    }
+  }
+  .login__error {
+    font-size: 1.2rem;
+    color: rgba(255, 0, 0, .7);
+    text-align: center;
+  }
+  @media only screen {
+    @media (max-width: 410px) {
+      width: 95%;
+    }
+  }
+}

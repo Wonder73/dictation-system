@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var login = require('./routes/login');
+var operation = require('./routes/operation');
+var speech = require('./routes/speech');
 
 var app = express();
 app.all('*', function(req, res, next) {
@@ -28,6 +30,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/login', login);
+app.use('/operation', operation);
+app.use('/speech', speech);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

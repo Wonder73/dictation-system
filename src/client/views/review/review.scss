@@ -1,0 +1,34 @@
+.review {
+  margin: 0 auto;
+  width: 500px;
+  p {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  .content {
+    p{
+      margin: 10px 0;
+      cursor: pointer;
+    }
+    .ant-row-flex{
+      padding:0 4px;
+      border-bottom: 1px solid #ddd;
+      .ant-col-16 {
+        p{
+          width: 100%;
+          height: 22px;
+          background: #ddd;
+        }
+      }
+    }
+  }
+  .order{
+    margin: 0;
+    font-size: 1.4rem;
+    text-align: right;
+    cursor: pointer;
+  }
+  @media only screen and (max-width: 510px){
+    width: 95%;
+  }
+}

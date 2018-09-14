@@ -10,8 +10,21 @@
       margin: 0;
       font-size: 1.4rem;
     }
+    .write__form--close {
+      font-size: 1.4rem;
+      color: rgba(0, 0, 0, .2);
+      cursor: pointer;
+      transition: color .3s;
+      &:hover {
+        color: #999;
+      }
+    }
   }
   .write__button {
     margin:15px 0;
+  }
+
+  @media only screen and (max-width: 510px){
+    width: 98%;
   }
 }

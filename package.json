@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "antd": "^3.9.1",
     "antd-mobile": "^2.2.3",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "prop-types": "^15.6.2",
     "qs": "^6.5.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
+    "react-router-redux": "^4.0.8",
     "react-scripts": "1.1.5",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0"
@@ -19,18 +22,20 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-app-rewired eject"
   },
   "devDependencies": {
+    "babel-plugin-import": "^1.8.0",
     "http-proxy-middleware": "^0.19.0",
     "node-sass": "^4.9.3",
+    "react-app-rewired": "^1.6.2",
     "redux-devtools-extension": "^2.13.5",
     "sass-loader": "^7.1.0"
   },
   "proxy": {
     "/api": {
       "target": "http://localhost:8080",
-      "secure":false
+      "secure": false
     }
   }
 }

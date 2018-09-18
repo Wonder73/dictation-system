@@ -6,6 +6,7 @@ const common = require('../libs/common');
 const router = express.Router();
 const db = mysql.createPool(common.mysqlConfig);
 
+//插入单词表
 router.post('/insert', (req, res) => {
   const {userId, username, data} = req.body;
   insert(userId, username, data).then((response) => {
@@ -16,6 +17,7 @@ router.post('/insert', (req, res) => {
   })
 });
 
+//查询单词表
 router.post('/select', (req, res) => {
   const {userId, username} = req.body;
   select(userId, username).then((response) => {
@@ -24,6 +26,32 @@ router.post('/select', (req, res) => {
     console.log(err);
     res.status(500).send(err.info).end();
   })
+});
+
+//记录听写内容
+router.post('/record', (req, res) => {
+  const {userId, username, didDictationWords, values, errorWords, achievement, timing } = req.body;
+
+  record(userId, username, [ userId, didDictationWords, values, errorWords, +timing, +achievement ]).then((response) => {
+    res.send(response).end();
+  }).catch((err) => {
+    console.log(err);
+    res.status(500).send(err.info).end();
+  })
+});
+
+/*完成惩罚*/
+router.post('/completePunish', (req, res) => {
+  const { insertId } = req.body;
+
+  db.query('UPDATE dictation_record SET punish = 1 WHERE id = ?', [insertId], (err, data) => {
+    if(err){
+      console.log(err);
+      res.status(500).send('数据库操作失败').end();
+    }else{
+      res.send({'type': true, 'info': ''}).end();
+    }
+  });
 });
 
 async function insert (id, username, words){
@@ -44,6 +72,13 @@ async function select (id, username){
   const data = await selectWords(id);
   return data;
 }
+
+async function record (id, username, array){
+ await checkUser(id, username);
+ const data = await insertRecord(array);
+ return data;
+}
+
 
 /*检查用户是否存在*/
 function checkUser(id, username){
@@ -107,6 +142,20 @@ function selectWords(id){
       }
     });
   });
+}
+
+// 往记录表中插入记录
+function insertRecord(array){
+  return new Promise((resolve, reject) => {
+    db.query('INSERT INTO dictation_record(`user_id`, `did_dictation_words`, `values`, `error_words`, `timing`, `achievement`) VALUES (?, ?, ?, ?, ?, ?)', array, (err, data) => {
+      if(err){
+        console.log(err);
+        reject({'type': false, 'info': '数据库操作失败'});
+      }else{
+        resolve({'type': true, 'insertId': data.insertId});
+      }
+    });
+  })
 }
 
 module.exports = router;

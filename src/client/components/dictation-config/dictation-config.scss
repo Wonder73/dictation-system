@@ -1,6 +1,25 @@
-.ant-row-flex {
-  margin: 10px 0;
-}
-.ant-radio-wrapper {
-  margin: 5px 0;
+.dictation-config__Modal{
+  .ant-row-flex {
+    margin: 10px 0;
+  }
+  .ant-radio-wrapper {
+    margin: 5px 0;
+  }
+  .ant-modal {
+    @media only screen {
+      @media (max-width: 767px){
+        width: 520px !important;
+      }
+      @media (max-width: 550px){
+        margin: 0 !important;
+        width: 98% !important;
+        .ant-modal-body {
+          padding: 10px !important;
+        }
+        .ant-col-4 {
+          font-size: 1.2rem !important;
+        }
+      }
+    }
+  }
 }

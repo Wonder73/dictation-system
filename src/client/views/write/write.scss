@@ -1,6 +1,7 @@
 .write {
   margin: 20px auto;
   width: 500px;
+  height:100px;
   .ant-row-flex{
     margin:5px 0;
     h1{
@@ -26,5 +27,22 @@
 
   @media only screen and (max-width: 510px){
     width: 98%;
+  }
+}
+
+.write__modal{
+  .ant-modal {
+    @media only screen {
+      @media (max-width: 767px){
+        width: 520px !important;
+      }
+      @media (max-width: 550px){
+        margin: 0 !important;
+        width: 98% !important;
+        .ant-modal-body {
+          padding: 12px !important;
+        }
+      }
+    }
   }
 }

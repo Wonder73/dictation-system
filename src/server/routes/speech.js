@@ -10,8 +10,8 @@ const SECRET_KEY = 'ced2b792ed7257c40e2fae2e7b4cff89';
 const client = new AipSpeechClient(APP_ID, API_KEY, SECRET_KEY);
 
 router.post('/', function (req, res){
-  const { text,username } = req.body;
-  client.text2audio(text, {'spd': 4}).then((result) => {
+  const { text, username, spd, per } = req.body;
+  client.text2audio(text, {spd, per }).then((result) => {
     if(result.data){
       fs.writeFile('public/audio/' + username + '.mp3', result.data, (err, data) => {
         if(err){

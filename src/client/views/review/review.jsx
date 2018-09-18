@@ -64,6 +64,8 @@ export default class Review extends Component {
       data: qs.stringify({
         text,
         username: user.username,
+        spd: 4,   //语速
+        per: 0,   //声音  女声
       }),
       headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     }).then((response) => {

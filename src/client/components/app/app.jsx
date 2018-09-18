@@ -10,7 +10,7 @@ import { BrowserRouter, HashRouter as Router } from 'react-router-dom';
 import './app.scss';
 import interfaceLib from '../../libs/interface';
 import { Write, Dictation, Review } from '../../containers';
-import { Home, Login } from '../../views';
+import { Home, Login, Check, Punish } from '../../views';
 import createHistory from 'history/createHashHistory'
 
 const history = createHistory();
@@ -116,6 +116,8 @@ export default class App extends Component {
             <Route path="/review" component={Review} />复习
             <Route path="/dictation" component={Dictation} />听写
             <Route path="/write" component={Write} />写入
+            <Route path="/check" component={Check} />检查
+            <Route path="/punish" component={Punish} />惩罚
             <Route path="/" component={Home} />首页
           </Switch>
         </div>

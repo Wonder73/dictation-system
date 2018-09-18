@@ -176,6 +176,7 @@ export default class Write extends Component {
           </Row>
         </div>
         <Modal title="单词"
+          wrapClassName = "write__modal"
           visible = {visible}
           confirmLoading = {confirmLoading}
           okText = "提交"

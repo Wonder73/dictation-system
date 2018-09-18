@@ -1,0 +1,15 @@
+.dictation-start {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  h1 {
+    margin: 0;
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 5px;
+    color: #333;
+  }
+  .dictation-start__form {
+    margin: 0 10px;
+  }
+}

@@ -6,6 +6,7 @@ import qs from 'qs'
 
 import './check.scss';
 import interfaceLib from '../../libs/interface';
+import { CheckWords } from '../../components'
 
 const RowStyle = {
   'type': 'flex',
@@ -110,44 +111,7 @@ export default class Check extends Component {
       return (
         <div className="check">
           <h1>成绩单</h1>
-          <div className="check__content">
-            <Row {...RowStyle}>
-              <Col xs={10} xl={4} lg={5} md={6}>
-                <Row {...RowStyle} style={{'padding': '5px 0'}}>
-                  <Col style={{'fontSize': '14px', 'color': '#666'}}>听写的单词</Col>
-                </Row>
-                {didDictationWords.map((value, index) => {
-                  return (
-                    <Row {...RowStyle} style={{'borderBottom': '1px solid #ddd', 'padding': '5px 0'}} key={index}>
-                      <Col style={{'fontSize': '18px'}}>{value.english}</Col>
-                      <Col style={{'fontSize': '15px'}}>{value.parts}.{value.chinese}</Col>
-                    </Row>
-                  )
-                })}
-              </Col>
-              <Col xs={10} xl={4} lg={5} md={6}>
-                <Row {...RowStyle} style={{'padding': '5px 0'}}>
-                  <Col style={{'fontSize': '14px', 'color': '#666'}}>你听写的单词</Col>
-                </Row>
-                {
-                  (() => {
-                    let html = [];
-
-                    for(let value in values){
-                      html.push(
-                        <Row {...RowStyle} style={{'borderBottom': '1px solid #ddd', 'padding': '5px 0', 'color': (!values[value].pass? '#ff4d4f': 'none')}} key={value}>
-                          <Col style={{'fontSize': '18px'}}>{values[value].english? values[value].english: '空'}</Col>
-                          <Col style={{'fontSize': '15px'}}>{values[value].chinese? values[value].chinese: '空'}</Col>
-                        </Row>
-                      );
-                    }
-
-                    return html;
-                  })()
-                }
-              </Col>
-            </Row>
-          </div>
+          <CheckWords didDictationWords={didDictationWords} values={values} span={{xs:10, xl: 4, lg: 5, md: 6}}/>
           <h2 className="achievement" style={{'color': (achievement >= 60? '#52c41a': '#ff4d4f')}}>{achievement}分</h2>
           <Row {...RowStyle}>
             {

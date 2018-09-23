@@ -174,7 +174,7 @@ class DictationStart extends Component {
         this.setState({timing});
         clearInterval(this.timings);
       }
-    }, 100);
+    }, 1);
   }
 
   /*根据要听写的单词数*/

@@ -31,8 +31,9 @@ router.post('/select', (req, res) => {
 //记录听写内容
 router.post('/record', (req, res) => {
   const {userId, username, didDictationWords, values, errorWords, achievement, timing } = req.body;
+  const punish = (JSON.parse(errorWords).length>0?0:1);   //判断是否需要惩罚
 
-  record(userId, username, [ userId, didDictationWords, values, errorWords, +timing, +achievement ]).then((response) => {
+  record(userId, username, [ userId, didDictationWords, values, errorWords, +timing, +achievement, punish ]).then((response) => {
     res.send(response).end();
   }).catch((err) => {
     console.log(err);
@@ -147,7 +148,7 @@ function selectWords(id){
 // 往记录表中插入记录
 function insertRecord(array){
   return new Promise((resolve, reject) => {
-    db.query('INSERT INTO dictation_record(`user_id`, `did_dictation_words`, `values`, `error_words`, `timing`, `achievement`) VALUES (?, ?, ?, ?, ?, ?)', array, (err, data) => {
+    db.query('INSERT INTO dictation_record(`user_id`, `did_dictation_words`, `values`, `error_words`, `timing`, `achievement`, `punish`) VALUES (?, ?, ?, ?, ?, ?, ?)', array, (err, data) => {
       if(err){
         console.log(err);
         reject({'type': false, 'info': '数据库操作失败'});

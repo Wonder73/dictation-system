@@ -10,7 +10,7 @@ import { BrowserRouter, HashRouter as Router } from 'react-router-dom';
 import './app.scss';
 import interfaceLib from '../../libs/interface';
 import { Write, Dictation, Review } from '../../containers';
-import { Home, Login, Check, Punish } from '../../views';
+import { Home, Login, Check, Punish, User } from '../../views';
 import createHistory from 'history/createHashHistory'
 
 const history = createHistory();
@@ -92,8 +92,9 @@ export default class App extends Component {
       content: "你确定要退出登录吗？",
       okText: "登出",
       cancelText: "取消",
-      onOk (){
+      onOk: () => {
         sessionStorage.removeItem('user');
+        this.setState({nickname: ''});
         history.push('/login');
       },
       onCancel (){}
@@ -102,6 +103,7 @@ export default class App extends Component {
 
   render (){
     const { go_index, nickname } = this.state;
+
     return (
       <Router>
         <div className="app">
@@ -109,7 +111,7 @@ export default class App extends Component {
             {
               (go_index ? <NavLink to="/" activeClassName="active">返回首页</NavLink> : <p></p>)
             }
-            {nickname? <p className="user-info"><span>{nickname}</span><span onClick={this.logoutAction}>退出</span></p>: ''}
+            {nickname? <p className="user-info"><span><NavLink to='/user' >{nickname}</NavLink></span><span onClick={this.logoutAction}>退出</span></p>: ''}
           </header>
           <Switch>
             <Route path="/login" component={Login} />登录
@@ -118,6 +120,7 @@ export default class App extends Component {
             <Route path="/write" component={Write} />写入
             <Route path="/check" component={Check} />检查
             <Route path="/punish" component={Punish} />惩罚
+            <Route path="/user" component={User} />用户页面
             <Route path="/" component={Home} />首页
           </Switch>
         </div>

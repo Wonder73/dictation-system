@@ -5,6 +5,7 @@ import Review from './review/review';
 import Login from './login/login';
 import Check from './check/check';
 import Punish from './punish/punish';
+import User from './user/user';
 
 export {
   Home,
@@ -13,5 +14,6 @@ export {
   Review,
   Login,
   Check,
-  Punish
+  Punish,
+  User
 }

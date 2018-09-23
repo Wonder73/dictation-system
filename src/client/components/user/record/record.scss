@@ -1,0 +1,37 @@
+.user__record {
+  margin: 10px auto;
+  width: 1200px;
+  .ant-table-body{
+    overflow-x: auto !important;
+  }
+  .ant-table-body-inner {
+    background: #fff;
+  }
+  .user__record--achievement {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    p{
+      margin: 10px;
+      font-size: 1.5rem;
+      span {
+        font-size: 3rem;
+        font-weight: bold;
+        &.green {
+          color: #52c41a;
+        }
+        &.orange {
+          color: orange;
+        }
+        &.red {
+          color: #ff4d4f;
+        }
+      }
+    }
+  }
+  @media only screen {
+    @media (max-width: 1200px){
+      width: 98%;
+    }
+  }
+}

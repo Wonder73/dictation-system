@@ -5,6 +5,9 @@ import DictationStart from './dictation-start/dictation-start';
 import userRecord from './user/record/record';
 import userWords from './user/words/words';
 
+import AdminSide from './admin/side/side';
+import AdminHeader from './admin/header/header';
+
 export {
   CheckWords,
   App,
@@ -12,4 +15,7 @@ export {
   DictationStart,
   userRecord,
   userWords,
+
+  AdminSide,
+  AdminHeader,
 }

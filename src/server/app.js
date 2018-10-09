@@ -8,6 +8,7 @@ var login = require('./routes/login');
 var operation = require('./routes/operation');
 var speech = require('./routes/speech');
 var user = require('./routes/user');
+var admin = require('./routes/admin/admin');
 
 var app = express();
 app.all('*', function(req, res, next) {
@@ -34,6 +35,7 @@ app.use('/login', login);
 app.use('/operation', operation);
 app.use('/speech', speech);
 app.use('/user', user);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

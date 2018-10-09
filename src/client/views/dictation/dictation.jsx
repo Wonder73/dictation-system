@@ -37,7 +37,6 @@ export default class Dictation extends Component {
   }
 
   componentWillMount (){
-
     PubSub.subscribe('changeConfig', (msg, config) => {
       const { words } = this.state;
       let { dictationWords } = this.state;
@@ -68,7 +67,7 @@ export default class Dictation extends Component {
   }
 
   render (){
-    const { config, status, dictationWords } = this.state;
+    const { config, status, dictationWords, words } = this.state;
     const { history } = this.props;
 
     return (
@@ -78,7 +77,7 @@ export default class Dictation extends Component {
             <DictationStart config={config} dictationWords={dictationWords} history={history} />
           ): null)
         }
-        <DictationConfig history={this.props.history} config={config} />
+        <DictationConfig history={this.props.history} config={config} wordsCount={words.length}/>
       </div>
     );
   }

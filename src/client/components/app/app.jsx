@@ -10,7 +10,7 @@ import { BrowserRouter, HashRouter as Router } from 'react-router-dom';
 import './app.scss';
 import interfaceLib from '../../libs/interface';
 import { Write, Dictation, Review } from '../../containers';
-import { Home, Login, Check, Punish, User } from '../../views';
+import { Home, Login, Check, Punish, User, Admin } from '../../views';
 import createHistory from 'history/createHashHistory'
 
 const history = createHistory();
@@ -92,6 +92,7 @@ export default class App extends Component {
       content: "你确定要退出登录吗？",
       okText: "登出",
       cancelText: "取消",
+      maskClosable: true,
       onOk: () => {
         sessionStorage.removeItem('user');
         this.setState({nickname: ''});
@@ -107,12 +108,16 @@ export default class App extends Component {
     return (
       <Router>
         <div className="app">
-          <header>
-            {
-              (go_index ? <NavLink to="/" activeClassName="active">返回首页</NavLink> : <p></p>)
-            }
-            {nickname? <p className="user-info"><span><NavLink to='/user' >{nickname}</NavLink></span><span onClick={this.logoutAction}>退出</span></p>: ''}
-          </header>
+          {
+            (!history.location.pathname.includes('d-admin')? (
+              <header>
+                {
+                  (go_index ? <NavLink to="/" activeClassName="active">返回首页</NavLink> : <p></p>)
+                }
+                {nickname? <p className="user-info"><span><NavLink to='/user' >{nickname}</NavLink></span><span onClick={this.logoutAction}>退出</span></p>: ''}
+              </header>
+            ): null)
+          }
           <Switch>
             <Route path="/login" component={Login} />登录
             <Route path="/review" component={Review} />复习
@@ -121,6 +126,7 @@ export default class App extends Component {
             <Route path="/check" component={Check} />检查
             <Route path="/punish" component={Punish} />惩罚
             <Route path="/user" component={User} />用户页面
+            <Route path="/d-admin" component={Admin} />后台管理页面
             <Route path="/" component={Home} />首页
           </Switch>
         </div>

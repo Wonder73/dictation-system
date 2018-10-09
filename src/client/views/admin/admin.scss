@@ -1,0 +1,15 @@
+.admin {
+  // display: flex;
+  background: #E8ECF0;
+
+  .admin__temp {transition: width .2s linear;}    //为了填充side的空位
+
+  .admin__main {      //主题部分
+    width: 100%;
+    margin-top: 50px;
+    padding: 15px;
+    height: 1000px;
+    transition: all .2s linear;
+  }/*admin__main*/
+
+}/*admin*/

@@ -11,7 +11,7 @@
         position: absolute;
         left: 0;
         z-index: 2;
-        transition: width .3s linear;
+        transition: width .3s linear .2s;
         &:focus {
           width: 81%;
           &+button {
@@ -23,7 +23,7 @@
         width: 18%;
         z-index: 1;
         transform: scale(0);
-        transition: transform .3s linear;
+        transition: transform .3s linear .2s;
       }
     }
   }/*user__words--operation*/

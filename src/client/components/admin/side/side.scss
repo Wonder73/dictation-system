@@ -1,0 +1,48 @@
+.admin__side {    //侧导航
+  position: fixed;
+  left: 0; top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  height: 100%;
+  box-shadow: 2px 50px 5px rgba(0, 0, 0, .1);
+  background: #fff;
+  z-index: 2;
+  .admin__side--logo {    //logo
+    margin: 5px 0;
+    span {
+      font-size: 3.2rem;
+      font-weight: bold;
+    }
+  }/*admin__side--logo*/
+  .admin__side--menu {     //菜单
+    flex: 1;
+    transition: width .2s linear;
+    .ant-menu {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #fdfdfd;
+      .ant-menu-item {
+        display: flex;
+        align-items: center;
+        margin: 0 !important;
+        padding: 20px auto !important;
+        height: 40px;
+        span {letter-spacing: 2px; font-size: 1.2rem;}
+      }/*ant-menu-item*/
+      .anticon {
+        margin-left: -5px;
+      }
+    }/*ant-menu*/
+  }/*admin__side--menu*/
+  .admin__side--fold {    //折叠和展开
+    margin: 10px 0;
+    i {cursor:pointer;}
+  }
+  .anticon {     //图标
+    margin-left: -3px;
+    font-size: 1.8rem;
+  }
+}/*admin__side*/

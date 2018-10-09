@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import { Row, Col } from 'antd';
 import axios from 'axios';
 import qs from 'qs';
@@ -79,26 +80,34 @@ export default class Review extends Component {
   render (){
     const { words, order } = this.state;
 
-    return (
-      <div className="review">
-        <p className="order" onClick={this.changeOrder}>{(order === 'desc'? '正序': '倒序')}</p>
-        <Row type="flex" justify="center" gutter={8}>
-          <Col span={8}><p>英文</p></Col>
-          <Col span={16}><p>中文</p></Col>
-        </Row>
-        <div className="content">
-          {
-            words.map((value, index) => (
-              <Row type="flex" justify="center" gutter={8} key={index}>
-                <Col span={8}><p onClick={this.playWord}>{value.english}</p></Col>
-                <Col span={16}><p onClick={(e) => (this.showChinese(e, value.parts, value.chinese))}></p></Col>
-              </Row>
-            ))
-          }
+    if(words.length && words[0].english){
+      return (
+        <div className="review">
+          <p className="order" onClick={this.changeOrder}>{(order === 'desc'? '正序': '倒序')}</p>
+          <Row type="flex" justify="center" gutter={8}>
+            <Col span={8}><p>英文</p></Col>
+            <Col span={16}><p>中文</p></Col>
+          </Row>
+          <div className="content">
+            {
+              words.map((value, index) => (
+                <Row type="flex" justify="center" gutter={8} key={index}>
+                  <Col span={8}><p onClick={this.playWord}>{value.english}</p></Col>
+                  <Col span={16}><p onClick={(e) => (this.showChinese(e, value.parts, value.chinese))}></p></Col>
+                </Row>
+              ))
+            }
+          </div>
+          { /*音频播放*/ }
+          <audio src='' autoPlay ref={audio => this.audio=audio}></audio>
         </div>
-        { /*音频播放*/ }
-        <audio src='' autoPlay ref={audio => this.audio=audio}></audio>
-      </div>
-    );
+      );
+    }else {
+      return (
+        <div className="review">
+          <p style={{'fontSize': '15px', 'margin': '10px auto', 'textAlign': 'center'}}>暂无数据 <NavLink to="/write">单词写入</NavLink></p>
+        </div>
+      );
+    }
   }
 }

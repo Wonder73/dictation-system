@@ -3,11 +3,7 @@ import { routerReducer } from 'react-router-redux'
 
 import { INSERT, SELECT } from './action-types'
 
-const defaultState = [{
-  english: '',
-  parts: '',
-  chinese: '',
-}]
+const defaultState = []
 
 function dictationSystem(state = defaultState, action){
   switch(action.type){

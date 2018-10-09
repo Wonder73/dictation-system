@@ -116,15 +116,17 @@ export default class Record extends Component {
 
   render (){
     const { columns, dataSource, simple, total, filterTotal, pageSize, passCount, max, min, avg, loading, visible, words, dictation_words} = this.state;
-    const passRate = (+passCount/+total)*100;
+    let passRate = (+passCount/+total)*100;
+    //eslint-disable-next-line
+    passRate = (passRate === passRate? passRate: 0);
 
     return (
       <div className="user__record">
         <div className="user__record--achievement">
           <Row type="flex" align="bottom" justify="center">
-            <Col><p>最高分：{max}</p></Col>
-            <Col><p>最低分：{min}</p></Col>
-            <Col><p>平均分：{avg.toFixed(2)}</p></Col>
+            <Col><p>最高分：{max? max: 0}</p></Col>
+            <Col><p>最低分：{min? min: 0}</p></Col>
+            <Col><p>平均分：{avg?avg.toFixed(2):0}</p></Col>
             <Col><p>及格数：{passCount}</p></Col>
             <Col><p>总数：{total}</p></Col>
             <Col><p>及格率：<span className={passRate>=90? 'green': passRate>=60? 'orange': 'red'}>{`${passRate.toFixed(1)}%`}</span></p></Col>

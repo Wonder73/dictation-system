@@ -1,0 +1,51 @@
+.admin__main--content_apply {
+
+  .admin__main--content_apply-btn {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    button {
+      margin: 0 5px;
+    }
+  }
+
+  .ant-table-body{
+    overflow-x: auto !important;
+    z-index: 0;
+    background: #fff;
+    .table__redundant {
+      display: flex;
+      margin-left: 50px;
+      p {
+        margin: 0 10px !important;
+      }
+    }/*table__redundant*/
+    table {
+      padding: 0 !important;
+    }
+  }/*ant-table-body*/
+
+  .apply__table--operation {
+    button {
+      margin: 0 5px;
+      font-size: 1.4rem;
+    }
+  }
+
+  .ant-table-fixed-left {
+    .ant-table-expanded-row {
+      .table__redundant {
+        display: flex;
+        height: 21px;
+        flex-wrap: nowrap;
+        p {
+          display: none;
+        }
+      }/*table__redundant*/
+    }/*ant-table-expanded-row*/
+  }/*ant-table-fixed-left */
+
+  .ant-table-placeholder {
+    z-index: 0;
+  }
+}

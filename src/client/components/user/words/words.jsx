@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Row, Col, Input, Button, Pagination } from 'antd';
+import { Row, Col, Input, Button, Pagination, Modal } from 'antd';
 import axios from 'axios';
 import qs from 'qs';
 
@@ -185,14 +185,23 @@ export default class Words extends Component {
     if(order === 'desc'){
       index = userWords.length-index-1;
     }
-    
-    words.splice(userWords[index].key, 1);
-    userWords.splice(index, 1);
 
-    this.setState({ userWords, words });
+    Modal.confirm({
+      title: '删除单词',
+      content: `你确定要删除 ${userWords[index].english} 吗？`,
+      okText: '删除',
+      cancelText: '取消',
+      maskClosable: true,
+      onOk: () => {
+        words.splice(userWords[index].key, 1);
+        userWords.splice(index, 1);
 
-    //修改数据库
-    this.modifyWords();
+        this.setState({ userWords, words });
+
+        //修改数据
+        this.modifyWords();
+      }
+    });
   }
 
   //处理排序

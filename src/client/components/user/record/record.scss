@@ -1,12 +1,21 @@
 .user__record {
   margin: 10px auto;
   width: 1200px;
+
+  //改改表格默认样式
   .ant-table-body{
     overflow-x: auto !important;
+    .ant-table-thead > tr > th, .ant-table-tbody > tr > td{
+      padding: 10px !important;
+    }
+  }
+  .ant-table-fixed-left .ant-table-thead > tr > th:last-child, .ant-table-fixed-left .ant-table-tbody > tr > td {
+    padding: 10px !important;
   }
   .ant-table-body-inner {
     background: #fff;
   }
+
   .user__record--achievement {
     display: flex;
     justify-content: flex-end;

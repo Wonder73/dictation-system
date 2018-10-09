@@ -138,7 +138,7 @@ function selectWords(id){
         if(data.length){
           resolve({'type': true, 'content': data[0].words});
         }else{
-          reject({'type': false, 'content': '找不到用户数据'});
+          resolve({'type': false, 'content': '找不到用户数据'});
         }
       }
     });

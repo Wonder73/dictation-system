@@ -29,6 +29,7 @@ export default class Dictation extends Component {
   static propTypes = {
     config: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
+    wordsCount: PropTypes.number.isRequired,
   }
 
   componentWillReceiveProps (newProps){
@@ -70,9 +71,23 @@ export default class Dictation extends Component {
   /*点击向父组件发送config信息*/
   sendConfig = () => {
     const { config } = this.state;
-
-    PubSub.publish('changeConfig', config);
-    this.setState({visible: false});
+    if(this.props.wordsCount === 1){
+      Modal.warning({
+        title: '警告',
+        content: '单词表必须有超过一个的单词才可以听写, 点击录入，前往录单词页面',
+        maskClosable: true,
+        okText: '录入',
+        onOk: () => {
+          this.props.history.push('/write');
+        },
+        onCancel:() => {
+          this.props.history.goBack();
+        }
+      })
+    }else{
+      PubSub.publish('changeConfig', config);
+      this.setState({visible: false});
+    }
   }
 
   /*点击返回跳转到首页*/
@@ -133,7 +148,7 @@ export default class Dictation extends Component {
                 <Radio style={{display: 'block'}} value="4">
                   更多...
                   {
-                    config.wordTypes.type === '4'? <Slider range defaultValue={config.wordTypes.range} max={41} onChange={(value) => (this.changeConfig(value, 'range'))} />: null
+                    config.wordTypes.type === '4'? <Slider range defaultValue={config.wordTypes.range} max={this.props.wordsCount} onChange={(value) => (this.changeConfig(value, 'range'))} />: null
                   }
                 </Radio>
               </Radio.Group>

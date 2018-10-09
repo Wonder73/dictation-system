@@ -26,6 +26,15 @@
     color: rgba(255, 0, 0, .7);
     text-align: center;
   }
+  .register {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    text-align: center;
+    cursor:pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
   @media only screen {
     @media (max-width: 410px) {
       width: 95%;

@@ -18,7 +18,8 @@ router.use('/login', (req, res) => {
       if(data.length <= 0){
         res.send({'type': false, 'info': '没有该用户名，如果想注册请联系管理员'}).end();
       }else{
-          res.send({'type': true, 'info': {'id': data[0].id,'username': common.md5(data[0].username,common.MD5_SUFFIX)}}).end();
+        db.query("UPDATE `user` SET `login_date`=now() WHERE `id`= ?", [data[0].id]);
+        res.send({'type': true, 'info': {'id': data[0].id,'username': common.md5(data[0].username,common.MD5_SUFFIX)}}).end();
       }
     }
   });
@@ -38,6 +39,38 @@ router.use('/checkLogin', (req, res) => {
       }else{
         res.send({'type': false, 'nickname': ''}).end();
       }
+    }
+  });
+});
+
+/*检查邮箱是否存在*/
+router.post('/checkEmail', (req, res) => {
+  const { email } = req.body;
+
+  db.query("SELECT * FROM user WHERE email = ?", [email], (err, data) => {
+    if(err) {
+      console.log(err);
+      res.status(500).send("数据库操作失败").end();
+    }else{
+      if(data.length){
+        res.send({'type': true, info: 'ok'}).end();
+      }else{
+        res.send({'type': false, info: 'no'}).end();
+      }
+    }
+  });
+});
+
+/*把申请表插入到数据库*/
+router.post('/apply', (req, res) => {
+  const { username, nickname, email, description } = req.body;
+
+  db.query("INSERT INTO `apply`(`username`, `nickname`, `email`, `description`) VALUES(?, ?, ?, ?)", [username, nickname, email, description], (err, data) => {
+    if(err){
+      console.log(err);
+      res.status(500).send('数据库操作失败').end();
+    }else{
+      res.send({'type': true, info: 'ok'}).end();
     }
   });
 });

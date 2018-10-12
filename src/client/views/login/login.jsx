@@ -10,14 +10,14 @@ class Login extends Component {
   constructor (props){
     super(props);
     this.state = {
-      username: "",    //用户名
-      error_info: "",  //登录错误信息
+      username: '',    //用户名
+      error_info: '',  //登录错误信息
       loading: false,  //登录状态
       applyloading: false, //申请请求状态
       visible: false,  //显示申请表单
       dataSources:[],  //邮箱的下拉列表
       emailExists: false,    //用于判断邮箱是否存在
-    }
+    };
   }
 
   componentDidMount (){
@@ -60,7 +60,7 @@ class Login extends Component {
     /*发送ajax请求*/
     axios({
       method: 'post',
-      url: interfaceLib.url + "/login/login",
+      url: interfaceLib.url + '/login/login',
       data: qs.stringify({
         username,
       }),
@@ -73,11 +73,11 @@ class Login extends Component {
         this.props.history.push('/');
       }else{
         error_info = data.info;
-        username = "";
+        username = '';
         this.setState({username, loading, error_info});
       }
     }).catch((err) => {
-      console.log(err);
+      throw err;
     });
   }
 
@@ -114,7 +114,7 @@ class Login extends Component {
           }
         }).catch((err) => {
           throw err;
-        })
+        });
       }
     });
   }
@@ -122,7 +122,7 @@ class Login extends Component {
   //邮箱的下拉列表
   handleSearch = (value) => {
     let { dataSources } = this.state;
-    const suffix = ['@qq.com','@163.com','@gmail.com','@outlook.com']
+    const suffix = ['@qq.com','@163.com','@gmail.com','@outlook.com'];
     let prefixValue = '';   //‘@’符号前面面
     let suffixValue = '';   //‘@’符号后面
     if(value.includes('@')){
@@ -185,7 +185,7 @@ class Login extends Component {
     const layoutItem = {
       labelCol: {span: 4},
       wrapperCol: {span: 18}
-    }
+    };
 
     const suffix = (username? <Icon type="close-circle" className="login__Input--close" onClick={this.emptyUsername} />: '');
 
@@ -199,10 +199,10 @@ class Login extends Component {
           value = {username}
           onChange = {this.changeUsername}
           onPressEnter = {this.loginAction}
-         />
-         <Button type="primary" className="login__button" loading={loading} onClick={this.loginAction}>登录</Button>
-         <p className="login__error">{error_info}</p>
-         <p className="register" onClick={(e) => { this.visibleModal(true) }}>申请账号</p>
+        />
+        <Button type="primary" className="login__button" loading={loading} onClick={this.loginAction}>登录</Button>
+        <p className="login__error">{error_info}</p>
+        <p className="register" onClick={(e) => { this.visibleModal(true); }}>申请账号</p>
 
         <Modal
           title = "申请账号"
@@ -232,8 +232,8 @@ class Login extends Component {
                     callback();
                   }}
                 ],
-                })(
-                <Input teyp="text" placeholder="输入6~12位的用户名" autoComplete="off" />
+              })(
+                <Input type="text" placeholder="输入6~12位的用户名" autoComplete="off" />
               ) }
             </Form.Item>
             <Form.Item
@@ -248,7 +248,7 @@ class Login extends Component {
                   { whitespace: true, message: '不得包含特殊字符'}
                 ]
               })(
-                <Input teyp="text" placeholder="输入2~10位昵称" autoComplete="off" id="error" />
+                <Input type="text" placeholder="输入2~10位昵称" autoComplete="off" id="error" />
               ) }
             </Form.Item>
             <Form.Item

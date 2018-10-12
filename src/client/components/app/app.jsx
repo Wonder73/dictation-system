@@ -10,8 +10,8 @@ import { BrowserRouter, HashRouter as Router } from 'react-router-dom';
 import './app.scss';
 import interfaceLib from '../../libs/interface';
 import { Write, Dictation, Review } from '../../containers';
-import { Home, Login, Check, Punish, User, Admin } from '../../views';
-import createHistory from 'history/createHashHistory'
+import { Home, Login, Check, Punish, User, Admin, LoginAdmin } from '../../views';
+import createHistory from 'history/createHashHistory';
 
 const history = createHistory();
 const confirm = Modal.confirm;
@@ -22,7 +22,7 @@ export default class App extends Component {
     this.state = {
       'go_index': false,    //判断是否显示”返回首页
       'nickname': '',       //用户的昵称
-    }
+    };
   }
 
   static propTypes = {
@@ -34,11 +34,13 @@ export default class App extends Component {
   componentDidMount (){
     /*判断要不要显示返回首页*/
     this.changeGoIndex(history.location);
-    this.checkUserLogin();
+    if(history.location.pathname.indexOf('/d-admin') < 0 && history.location.pathname.indexOf('/d-login-admin') < 0){
+      this.checkUserLogin();
+    }
     history.listen((location) => {
       this.changeGoIndex(location);
       /*是否有用户登录如果在“/login”路由就不用判断*/
-      if(location.pathname !== '/login'){
+      if(location.pathname !== '/login' && history.location.pathname.indexOf('/d-admin') < 0 && history.location.pathname.indexOf('/d-login-admin') < 0){
         this.checkUserLogin();
       }
     });
@@ -88,10 +90,10 @@ export default class App extends Component {
   /*退出登录方法*/
   logoutAction = () => {
     confirm({
-      title: "退出登录",
-      content: "你确定要退出登录吗？",
-      okText: "登出",
-      cancelText: "取消",
+      title: '退出登录',
+      content: '你确定要退出登录吗？',
+      okText: '登出',
+      cancelText: '取消',
       maskClosable: true,
       onOk: () => {
         sessionStorage.removeItem('user');
@@ -99,7 +101,7 @@ export default class App extends Component {
         history.push('/login');
       },
       onCancel (){}
-    })
+    });
   }
 
   render (){
@@ -127,10 +129,11 @@ export default class App extends Component {
             <Route path="/punish" component={Punish} />惩罚
             <Route path="/user" component={User} />用户页面
             <Route path="/d-admin" component={Admin} />后台管理页面
+            <Route path="/d-login-admin" component={LoginAdmin} />后台管理页面
             <Route path="/" component={Home} />首页
           </Switch>
         </div>
       </Router>
-    )
+    );
   }
 }

@@ -7,6 +7,7 @@ import Check from './check/check';
 import Punish from './punish/punish';
 import User from './user/user';
 import Admin from './admin/admin';
+import LoginAdmin from './login-admin/login-admin';
 
 export {
   Home,     //首页
@@ -18,4 +19,5 @@ export {
   Punish,   //惩罚页面
   User,    //用户页面
   Admin,   //后台管理页面
+  LoginAdmin,
 }

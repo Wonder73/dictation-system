@@ -7,10 +7,11 @@ import interfaceLib from '../libs/interface';
 export const insert = (words) => ({'type': INSERT, 'data': words});
 export const select = (user) => {
   const { id, username } = user;
+
   return (dispatch) => {
     axios({
       method: 'post',
-      url: interfaceLib.url + '/operation/select',
+      url: `${interfaceLib.url}/operation/select`,
       data: qs.stringify({
         userId: id,
         username,
@@ -22,5 +23,5 @@ export const select = (user) => {
         dispatch({'type': SELECT, 'data': JSON.parse(data.content)});
       }
     });
-  }
-}
+  };
+};

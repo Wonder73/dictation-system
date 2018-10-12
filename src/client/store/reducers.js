@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux'
+import { routerReducer } from 'react-router-redux';
 
-import { INSERT, SELECT } from './action-types'
+import { INSERT, SELECT } from './action-types';
 
 const defaultState = []
 

@@ -7,6 +7,8 @@ import userWords from './user/words/words';
 
 import AdminSide from './admin/side/side';
 import AdminHeader from './admin/header/header';
+import AdminExhibit from './admin/exhibit/exhibit';
+import AdminChart from './admin/chart/chart';
 
 export {
   CheckWords,
@@ -18,4 +20,6 @@ export {
 
   AdminSide,
   AdminHeader,
-}
+  AdminExhibit,
+  AdminChart,
+};

@@ -42,6 +42,8 @@ async function loginAdmin(req){
     req.session.user = content.data;
   }
 
+  await adminLoginRecord(content.data.id);
+
   return content;
 }
 
@@ -90,4 +92,33 @@ function checkAdmin(username, password){
   });
 }
 
+//记录管理员登录
+function adminLoginRecord(id){
+  const ip = getIPAdress();
+
+  return new Promise((resolve, reject) => {
+    db.query('INSERT INTO admin_login_record(admin_id, ip) values(?, ?)', [id, ip], (err, data) => {
+      if(err){
+        console.log(err);
+        reject({'type': false, 'info': '数据库操作失败！！'});
+      }else{
+        resolve();
+      }
+    });
+  });
+}
+
+/**获取本机ip**/
+function getIPAdress(){
+  const interfaces = require('os').networkInterfaces();
+  for(let devName in interfaces){
+    let iface = interfaces[devName];
+    for(let i=0;i<iface.length;i++){
+      let alias = iface[i];
+      if(alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal){
+        return alias.address;
+      }
+    }
+  }
+}
 module.exports = router;

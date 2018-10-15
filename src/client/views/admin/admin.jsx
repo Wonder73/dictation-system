@@ -16,11 +16,12 @@ export default class Admin extends Component {
     super(props);
     this.state = {
       inlineCollapsed: true,   //折叠左侧菜单
-      username: '',
+      username: '',          //用户名
+      render: false,    //在没有用户登录时不渲染页面
     };
   }
 
-  componentDidMount () {
+  componentWillMount () {
     this.checkAdminLogin();
 
     PubSub.subscribe('updateInlineCollapsed', (message, value) => {
@@ -49,7 +50,7 @@ export default class Admin extends Component {
           sessionStorage.setItem('admin', JSON.stringify(data.data));
         }
 
-        this.setState({username: data.data.username});
+        this.setState({username: data.data.username, render: true});
       }else{
         this.props.history.push('/d-login-admin');
       }
@@ -68,25 +69,29 @@ export default class Admin extends Component {
   }
 
   render (){
-    const { inlineCollapsed, username } = this.state;
+    const { inlineCollapsed, username, render } = this.state;
     const { history } = this.props;
 
-    return (
-      <div className="admin">
-        <AdminSide inlineCollapsed={inlineCollapsed} />
-
-        <div className="admin__main" style={{paddingLeft: (inlineCollapsed? 85: 155)}}>
-          <AdminHeader inlineCollapsed={inlineCollapsed} username={username} history={history} />
-          <div className="admin__side--content">
-            <Switch>
-              <Route path="/d-admin/manage" component={Manage} />
-              <Route path="/d-admin/apply" component={Apply} />
-              <Route path="/d-admin/" component={All} />
-              <Redirect to="/d-admin/" />
-            </Switch>
+    if(render) {
+      return (
+        <div className="admin">
+          <AdminSide inlineCollapsed={inlineCollapsed} />
+  
+          <div className="admin__main" style={{paddingLeft: (inlineCollapsed? 85: 155)}}>
+            <AdminHeader inlineCollapsed={inlineCollapsed} username={username} history={history} />
+            <div className="admin__side--content">
+              <Switch>
+                <Route path="/d-admin/manage" component={Manage} />
+                <Route path="/d-admin/apply" component={Apply} />
+                <Route path="/d-admin/" component={All} />
+                <Redirect to="/d-admin/" />
+              </Switch>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }else{
+      return null;
+    }
   }
 }

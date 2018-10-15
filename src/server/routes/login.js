@@ -3,7 +3,7 @@ const mysql = require('mysql');
 
 const common = require('../libs/common');
 
-var router = express.Router();
+const router = express.Router();
 const db = mysql.createPool(common.mysqlConfig);
 
 /*用户登录*/
@@ -18,8 +18,20 @@ router.use('/login', (req, res) => {
       if(data.length <= 0){
         res.send({'type': false, 'info': '没有该用户名，如果想注册请联系管理员'}).end();
       }else{
-        db.query("UPDATE `user` SET `login_date`=now() WHERE `id`= ?", [data[0].id]);
-        res.send({'type': true, 'info': {'id': data[0].id,'username': common.md5(data[0].username,common.MD5_SUFFIX)}}).end();
+        const user_id = data[0].id;
+
+        db.query("UPDATE `user` SET `login_date`=now() WHERE `id`= ?", [user_id]);
+        db.query("SELECT * FROM `login_record` WHERE id = ? AND date > DATE_FORMAT(NOW(), '%Y-%m-%d')", [user_id], (err, data) => {
+          if(err){
+            console.log(err);
+            res.status(500).send("数据库操作失败！！！").end();
+          }else{
+            if(!data.length){
+              db.query("INSERT INTO `login_record`(`user_id`) VALUES (?)", [user_id]);
+            }
+          }
+        });
+        res.send({'type': true, 'info': {'id': data[0].id, 'username': common.md5(data[0].username, common.MD5_SUFFIX)}}).end();
       }
     }
   });

@@ -195,7 +195,7 @@ class Login extends Component {
         <Input
           prefix = { <Icon type="user" style={{color: 'rgba(0, 0, 0, .25)'}} /> }
           suffix = {suffix}
-          placeholder = "输入你的用户名"
+          placeholder = "输入你的用户名 比如：“000000”"
           value = {username}
           onChange = {this.changeUsername}
           onPressEnter = {this.loginAction}

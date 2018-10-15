@@ -21,7 +21,7 @@ router.use('/login', (req, res) => {
         const user_id = data[0].id;
 
         db.query("UPDATE `user` SET `login_date`=now() WHERE `id`= ?", [user_id]);
-        db.query("SELECT * FROM `login_record` WHERE id = ? AND date > DATE_FORMAT(NOW(), '%Y-%m-%d')", [user_id], (err, data) => {
+        db.query("SELECT * FROM `login_record` WHERE user_id = ? AND date > DATE_FORMAT(NOW(), '%Y-%m-%d')", [user_id], (err, data) => {
           if(err){
             console.log(err);
             res.status(500).send("数据库操作失败！！！").end();

@@ -5,7 +5,7 @@ import qs from 'qs'
 import {Form, Input, Button, Icon, Row, Col, Modal} from 'antd';
 
 import './dictation-start.scss';
-import interfaceLib from '../../libs/interface'
+import interfaceLib from '../../libs/interface';
 
 class DictationStart extends Component {
   constructor(props){

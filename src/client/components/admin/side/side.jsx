@@ -4,9 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { Menu, Icon } from 'antd';
 
 import './side.scss';
-import createHistory from 'history/createHashHistory';
-
-const history = createHistory();
 
 export default class Side extends Component {
   constructor (props) {
@@ -26,7 +23,7 @@ export default class Side extends Component {
   }
   
   updateSide = () => {
-    const {pathname} = history.location;
+    const {pathname} = this.props.history.location;
     let { defaultSelectedKeys } = this.state;
 
     //更新侧边栏的默认值
@@ -39,7 +36,7 @@ export default class Side extends Component {
   }
 
   listen = () => {
-    history.listen((localtion) => {
+    this.props.history.listen((localtion) => {
       let defaultSelectedKeys = [];
       if(localtion.pathname.match(/\/d-admin\/(.*)/)){
         defaultSelectedKeys = [localtion.pathname.match(/\/d-admin\/(.*)/)[1]];

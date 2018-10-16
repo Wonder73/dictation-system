@@ -75,7 +75,7 @@ export default class Admin extends Component {
     if(render) {
       return (
         <div className="admin">
-          <AdminSide inlineCollapsed={inlineCollapsed} />
+          <AdminSide inlineCollapsed={inlineCollapsed} history={history} />
   
           <div className="admin__main" style={{paddingLeft: (inlineCollapsed? 85: 155)}}>
             <AdminHeader inlineCollapsed={inlineCollapsed} username={username} history={history} />

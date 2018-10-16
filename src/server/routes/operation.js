@@ -59,12 +59,13 @@ async function insert (id, username, words){
   await checkUser(id, username);
   const type = await checkWordsId(id);
   let data, sql;
+  
   if(type === 'insert'){
     sql = 'INSERT INTO words(words, user_id) VALUES(?, ?)';
   }else if(type === 'update'){
     sql = 'UPDATE words SET words = ? where user_id = ?';
   }
-  data = await insertWords(sql , [words, id]);
+  data = await insertWords(sql, [words, id]);
   return data;
 }
 
@@ -75,11 +76,10 @@ async function select (id, username){
 }
 
 async function record (id, username, array){
- await checkUser(id, username);
- const data = await insertRecord(array);
- return data;
+  await checkUser(id, username);
+  const data = await insertRecord(array);
+  return data;
 }
-
 
 /*检查用户是否存在*/
 function checkUser(id, username){
@@ -131,7 +131,7 @@ function insertWords(sql, data){
 /*通过用户获取单词表*/
 function selectWords(id){
   return new Promise((resolve, reject) => {
-    db.query('SELECT words FROM `words` WHERE id = ?', [id], (err, data) => {
+    db.query('SELECT words FROM `words` WHERE user_id = ?', [id], (err, data) => {
       if(err){
         reject({'type': false, 'info': '数据库操作失败'});
       }else{

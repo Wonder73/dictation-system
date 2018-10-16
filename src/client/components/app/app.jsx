@@ -73,9 +73,11 @@ export default class App extends Component {
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       }).then((response) => {
         const data = response.data;
-        //获取单词列表
-        this.props.select(user);
+
         if(data.type) {
+          //获取单词列表
+          this.props.select(user);
+          
           nickname = data.nickname;
           this.setState({ nickname });
         }else{

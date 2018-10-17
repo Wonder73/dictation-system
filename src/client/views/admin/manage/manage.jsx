@@ -101,7 +101,7 @@ export default class All extends Component {
     let dataSource = dataSources[index];
 
     if(dataSource.nickname !== nickname || dataSource.username !== username){
-      console.log(username, nickname);
+      
       axios({
         method: 'post',
         url: interfaceLibs.url + '/admin/manage/updateUser',

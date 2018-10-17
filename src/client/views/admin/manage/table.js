@@ -95,7 +95,7 @@ export default [
                 const inputs = e.target.parentNode.parentNode.parentNode.querySelectorAll('input[type=text]');   //表格中的input表单
                 const inputUsername = inputs[0].value;    //获取表单的用户名
                 const inputNickname = inputs[1].value;    //获取表单的昵称
-                console.log(inputUsername, inputNickname);
+                
                 PubSub.publish('saveModify', {username: inputUsername, nickname: inputNickname, index});
               }
             }>保存</Button>

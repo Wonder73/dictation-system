@@ -1,14 +1,16 @@
-import CheckWords from './check-words';
-import App from './app/app';
-import DictationConfig from './dictation-config/dictation-config';
-import DictationStart from './dictation-start/dictation-start';
-import userRecord from './user/record/record';
-import userWords from './user/words/words';
+import asyncComponent from './asyncComponent.js';
 
-import AdminSide from './admin/side/side';
-import AdminHeader from './admin/header/header';
-import AdminExhibit from './admin/exhibit/exhibit';
-import AdminChart from './admin/chart/chart';
+const CheckWords = asyncComponent(() => import('./check-words'));
+const App = asyncComponent(() => import('./app/app'));
+const DictationConfig = asyncComponent(() => import('./dictation-config/dictation-config'));
+const DictationStart = asyncComponent(() => import('./dictation-start/dictation-start'));
+const userRecord = asyncComponent(() => import('./user/record/record'));
+const userWords = asyncComponent(() => import('./user/words/words'));
+
+const AdminSide = asyncComponent(() => import('./admin/side/side'));
+const AdminHeader = asyncComponent(() => import('./admin/header/header'));
+const AdminExhibit = asyncComponent(() => import('./admin/exhibit/exhibit'));
+const AdminChart = asyncComponent(() => import('./admin/chart/chart'));
 
 export {
   CheckWords,

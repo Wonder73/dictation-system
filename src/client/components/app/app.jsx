@@ -64,7 +64,6 @@ export default class App extends Component {
     const { history } = this.props;
     const user = JSON.parse(sessionStorage.getItem('user'));    //用户信息
     let { nickname } = this.state;
-    
     if(user){
       axios({
         method: 'post',
@@ -73,7 +72,7 @@ export default class App extends Component {
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
       }).then((response) => {
         const data = response.data;
-
+        
         if(data.type) {
           //获取单词列表
           this.props.select(user);

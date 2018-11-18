@@ -121,6 +121,7 @@ class DictationStart extends Component {
 
   /*下一个单词*/
   nextWord = () => {
+    const { dictationCount } = this.props.config; 
     let { willDictationWords, didDictationWords} = this.state;
     let end = false;  //是否结束
     const length = willDictationWords.length;   //听写单词的长度
@@ -157,7 +158,7 @@ class DictationStart extends Component {
 
     }
 
-    if(length === 1){   //结束
+    if(length === 1 || didDictationWords.length >= dictationCount){   //结束
       end = true;
     }
 
@@ -184,7 +185,7 @@ class DictationStart extends Component {
     let html = [];    //用于存放多个输入框
 
     for(let i = 0; i < dictationCount; i++){
-      let word = `word_${i}`
+      let word = `word_${i}`;
       html.push(
         <Col sm={4} xs={7} key={i}>
           <Form.Item>
@@ -199,7 +200,8 @@ class DictationStart extends Component {
         </Col>
       );
     }
-    return html
+
+    return html;
   }
 
   render (){

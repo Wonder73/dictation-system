@@ -7,7 +7,7 @@ import interfaceLib from '../libs/interface';
 export const insert = (words) => ({'type': INSERT, 'data': words});
 export const select = (user) => {
   const { id, username } = user;
-
+  
   return (dispatch) => {
     axios({
       method: 'post',
@@ -19,8 +19,11 @@ export const select = (user) => {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     }).then((response) => {
       const { data } = response;
+      
       if(data.type){
         dispatch({'type': SELECT, 'data': JSON.parse(data.content)});
+      }else {
+        dispatch({'type': SELECT, 'data': []});
       }
     });
   };

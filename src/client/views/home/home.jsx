@@ -9,7 +9,7 @@ export default class Index extends Component {
 
     return (
       <div className="home">
-        <h1>Wonder - 听写系统</h1>
+        <h1>大学生英语在线听写系统</h1>
         <Button className="index__button index__button--write" onClick={(e) => {
           history.push('/write');
         }}>写入</Button>

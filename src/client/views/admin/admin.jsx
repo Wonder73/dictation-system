@@ -23,7 +23,7 @@ export default class Admin extends Component {
 
   componentWillMount () {
     this.checkAdminLogin();
-
+    
     PubSub.subscribe('updateInlineCollapsed', (message, value) => {
       this.fold();
     });
@@ -31,7 +31,7 @@ export default class Admin extends Component {
 
   checkAdminLogin = () => {
     const admin = sessionStorage.getItem('admin');
-
+    
     axios({
       method: 'post',
       url: `${interfaceLib.url}/admin/login/checkAdminLogin`,

@@ -48,6 +48,7 @@ export default class Punish extends Component {
 
     //判断有没有错误的单词
     if(errorWords.length){
+
       return (
       <div className="punish">
         <h1>错误单词</h1>

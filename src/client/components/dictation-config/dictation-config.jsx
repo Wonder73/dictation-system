@@ -106,6 +106,7 @@ export default class Dictation extends Component {
     if(!config.voice){   //判断config有没有内容，没有就直接发回
       return null;
     }
+    
     return (
       <div className="dictation-config">
         <Modal

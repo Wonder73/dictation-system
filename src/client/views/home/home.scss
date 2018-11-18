@@ -8,7 +8,7 @@
   width: 450px;
   transform: translate(-50%, -80%);
   h1 {
-    font-size: 5rem;
+    font-size: 4rem;
   }
   .index__button {
     margin: 5px 0;
@@ -19,12 +19,12 @@
     @media (max-width: 450px){
       width: 95%;
       h1 {
-        font-size: 4rem;
+        font-size:3rem;
       }
     }
     @media (max-width: 365px){
       h1{
-        font-size: 3rem;
+        font-size: 2rem;
       }
     }
   }

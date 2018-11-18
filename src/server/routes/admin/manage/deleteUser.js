@@ -47,8 +47,9 @@ async function deleteUnLogin(){
     await deleteUserWords(id);
     await deleteUserData(id);
   }
+
   return { 'type': true, 'info': 'ok'};
-};
+}
 
 //获取30天未登录的用户
 function getUnLoginUser(){

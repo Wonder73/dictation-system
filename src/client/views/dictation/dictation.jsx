@@ -63,21 +63,21 @@ export default class Dictation extends Component {
       }
 
       this.setState({ config, status: true, dictationWords });
-    })
+    });
   }
 
   render (){
     const { config, status, dictationWords, words } = this.state;
     const { history } = this.props;
-
+    
     return (
       <div className="dictation">
+        <DictationConfig history={this.props.history} config={config} wordsCount={words.length}/>
         {
           (status? (
             <DictationStart config={config} dictationWords={dictationWords} history={history} />
           ): null)
         }
-        <DictationConfig history={this.props.history} config={config} wordsCount={words.length}/>
       </div>
     );
   }

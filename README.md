@@ -2,7 +2,7 @@
 
 #### 项目介绍
 大学生在线听写系统  --- 方便没有老师是的自我听写
-项目网站地址：[http://www.keonmusic.cn/build](http://www.keonmusic.cn/build)
+项目网站地址：<a href="http://www.keonmusic.cn/build" target="_blank">http://www.keonmusic.cn/build</a>
 
 #### 软件架构
 软件架构说明

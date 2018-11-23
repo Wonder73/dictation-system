@@ -38,8 +38,8 @@ export default class Dictation extends Component {
 
   componentWillMount (){
     PubSub.subscribe('changeConfig', (msg, config) => {
-      const { words } = this.state;
-      let { dictationWords } = this.state;
+      const { words } = this.state;      //单词表
+      let { dictationWords } = this.state;   //用进行听写的单词
 
       //获取要听写的单词
       switch(+config.wordTypes.type){

@@ -69,7 +69,6 @@ function getApply(obj){
     sqlOrder = `ORDER BY email, id ${order}`;
   }
 
-
   return new Promise((resolve, reject) => {
     db.query(`SELECT * FROM apply ${where} ${sqlOrder} ${limit}`, (err, data) => {
       if(err){

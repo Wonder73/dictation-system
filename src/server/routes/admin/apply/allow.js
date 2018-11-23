@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
   });
 });
 
-//运行申请
+//允许申请
 async function allow(data){
   const filter = await filterData(data);   //筛选数据
   if(filter.length){

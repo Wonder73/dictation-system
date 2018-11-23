@@ -83,7 +83,7 @@ export default class Dictation extends Component {
         onCancel:() => {
           this.props.history.goBack();
         }
-      })
+      });
     }else{
       PubSub.publish('changeConfig', config);
       this.setState({visible: false});
